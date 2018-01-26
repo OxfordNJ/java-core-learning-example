@@ -39,3 +39,4 @@ public class LinkedListTest {
 	}
 
 }
+为避免并发修改的异常，应遵循以下简单规则：参考核心卷358
