@@ -1,0 +1,41 @@
+package list;
+import java.util.*;
+public class LinkedListTest {
+	public static void main(String[] args){
+		List<String> a = new LinkedList<>();
+		a.add("A");
+		a.add("C");
+		a.add("E");
+		
+		List<String> b = new LinkedList<>();
+		b.add("B");
+		b.add("D");
+		b.add("F");
+		b.add("G");
+		
+		//merge the words from b into a 
+		ListIterator<String> aIter = a.listIterator();
+		ListIterator<String> bIter = b.listIterator();
+		aIter.forEachRemaining(obj->System.out.println(obj));
+		while(bIter.hasNext()){
+			if (aIter.hasNext())   
+				aIter.next();
+			aIter.add(bIter.next());
+		}
+		System.out.println(a);
+		//remove every second word from b
+		bIter = b.listIterator();
+		while(bIter.hasNext()){
+			bIter.next();//skip one element
+			if(bIter.hasNext()){
+				bIter.next();
+				bIter.remove();
+			}
+		}
+		System.out.println(b);
+		a.removeAll(b);
+		System.out.println(a);
+		//aIter.forEachRemaining(obj->System.out.println(obj));此处会引发java.util.ConcurrentModificationException异常：因为更改了集合元素
+	}
+
+}
